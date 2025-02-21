@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Ramsey\Uuid\Guid\Guid;
 
 class Hero extends Model
@@ -25,4 +26,12 @@ class Hero extends Model
     protected $table = "heroes";
 
     protected $fillable = ["HeroId",'Name', 'Sex', 'OriginPlanet', 'Description', 'Powers', 'Town', 'Gadgets', 'Team', 'Vehicule',"UserId"];
+
+    protected $appends = ["UserName"];
+
+    public function getUserNameAttribute()
+    {
+        $user = User::find($this->UserId);
+        return $user ? $user->FirstName : "Inconnu";
+    }
 }

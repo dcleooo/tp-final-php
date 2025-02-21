@@ -1,0 +1,91 @@
+/* Applique box-sizing à tous les éléments */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Conteneur principal */
+div {
+    text-align: center;
+}
+
+/* Formulaire */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 20px auto;
+}
+
+/* Champs de saisie */
+/* Champs de saisie */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;  /* Important : inclure le padding et la bordure dans la largeur totale */
+}
+
+
+/* Labels */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Bouton de soumission */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background: #4facfe;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00c6ff;
+}
+
+/* Message d'erreur */
+p[style*="color: red"] {
+    background: #ffebee;
+    color: #d32f2f;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* Liens */
+p a {
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+p a:hover {
+    font-weight: bold;
+}

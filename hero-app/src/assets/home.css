@@ -1,0 +1,133 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Form Styles */
+form {
+    max-height: 70vh; /* Limiter la hauteur du formulaire à 70% de la hauteur de la fenêtre */
+    overflow-y: auto; /* Permettre le défilement si le contenu dépasse la hauteur */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Liste des héros */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+li {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+li a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+/* Positionnement du bouton de connexion */
+.login-btn {
+    position: fixed; /* Le bouton reste fixe même lors du défilement */
+    top: 20px;  /* Ajuste la distance du haut de la page */
+    right: 20px; /* Place le bouton en haut à droite */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 15px; /* Taille réduite du bouton */
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Enlève le soulignement si c'est un lien */
+    z-index: 100; /* Garantit que le bouton reste au-dessus des autres éléments */
+    width: auto; /* Ne prend pas toute la largeur */
+    display: inline-block; /* Assure que le bouton a la bonne taille */
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 0.9em;
+    }
+}

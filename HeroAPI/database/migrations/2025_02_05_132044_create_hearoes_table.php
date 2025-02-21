@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string("Gadgets")->nullable();
             $table->string("Team")->nullable();
             $table->string("Vehicule")->nullable();
-            $table->string("UserId");
+            $table->uuid("UserId");
+            $table->foreign("UserId")->references("UserId")->on("users");
             $table->timestamps();
         });
     }

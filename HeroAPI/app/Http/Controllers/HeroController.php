@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hero;
+use App\Models\User;
 use Ramsey\Uuid\Uuid;
 
 class HeroController extends Controller
 {
     public function index()
     {
-        return response()->json(Hero::all());
+        return response()->json(
+            Hero::all()->makeHidden(["UserId"]),
+        );
     }
 
     public function show($id)
@@ -18,6 +21,7 @@ class HeroController extends Controller
         $hero = Hero::find($id);
         if (!empty($hero))
         {
+            
             return response()->json($hero);
         }
         else
@@ -38,7 +42,6 @@ class HeroController extends Controller
             "UserId" => "required",
         ]);
     
-        // Création du Hero, HeroId sera généré automatiquement en UUID
         $hero = Hero::create([
             'Name' => $request->Name,
             'Sex' => $request->Sex,
@@ -52,17 +55,17 @@ class HeroController extends Controller
             "UserId" => $request->UserId
         ]);
     
-        return response()->json($hero, 201);  // Retourne le Hero créé avec son UUID
+        return response()->json($hero->makeHidden(["UserId"]), 201);  
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        if (!Hero::where("HeroId",$id)->exists()) {
+        if (!Hero::where("HeroId",$request->HeroId)->exists()) {
             return response()->json([
                 "message" => "Hero not found"
             ],404);
         } else {
-            $hero = Hero::find($id);
+            $hero = Hero::find($request->HeroId);
             $hero->Name = is_null($request->Name) ? $hero-> Name : $request->Name;
             $hero->Sex = is_null($request->Sex) ? $hero->Sex : $request->Sex;
             $hero->OriginPlanet = is_null($request->OriginPlanet) ? $hero->OriginPlanet : $request->OriginPlanet;
@@ -72,7 +75,6 @@ class HeroController extends Controller
             $hero->Gadgets = is_null($request->Gadgets) ? $hero->Gadgets : $request->Gadgets;
             $hero->Team = is_null($request->Team) ? $hero->Team : $request->Team;
             $hero->Vehicule = is_null($request->Vehicule) ? $hero->Vehicule : $request->Vehicule;
-            $hero->UserId = is_null($request->UserId) ? $hero->UserId : $request->UserId;
             $hero->save();
             return response()->json([
                 "message" => "Hero updated"
