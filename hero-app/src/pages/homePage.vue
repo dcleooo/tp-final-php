@@ -1,16 +1,13 @@
 <template>
   <div>
-    <!-- Bouton de redirection vers la page de connexion -->
     <button class="login-btn" @click="goToLoginPage">Se connecter</button>
 
     <h1>Liste des Héros</h1>
 
-    <!-- Bouton pour créer un héros -->
     <button @click="handleCreateHero">
       {{ showForm ? "Annuler" : "Créer un Héros" }}
     </button>
 
-    <!-- Formulaire d'ajout d'un héros (affiché uniquement si connecté) -->
     <div v-if="showForm">
       <h2>Créer un Nouveau Héros</h2>
       <form @submit.prevent="createHero">
@@ -35,7 +32,6 @@
           <textarea v-model="newHero.Description" required minlength="20"></textarea>
         </div>
 
-        <!-- Champs facultatifs -->
         <div>
           <label>Pouvoirs :</label>
           <input type="text" v-model="newHero.Powers" />
@@ -61,7 +57,6 @@
       </form>
     </div>
 
-    <!-- Liste des héros, cachée si le formulaire est ouvert -->
     <ul v-if="!showForm">
       <li v-for="hero in heroes" :key="hero.HeroId">
         <router-link :to="`/hero/${hero.HeroId}`">{{ hero.Name }}</router-link>
@@ -81,7 +76,7 @@ export default {
       showForm: false,
       newHero: {
         Name: "",
-        Sex: "Inconnu", // Valeur par défaut
+        Sex: "Inconnu", 
         OriginPlanet: "",
         Description: "",
         Powers: "",
@@ -106,25 +101,20 @@ export default {
     },
     handleCreateHero() {
       const token = localStorage.getItem('UserId');
-      console.log("Token trouvé:", token); // Vérification du token dans la console
-
+      console.log("Token trouvé:", token); 
       if (!token) {
-        // Si le token n'est pas trouvé, rediriger vers la page de connexion
         alert("Vous devez être connecté pour créer un héros !");
         this.$router.push('/');
-      } else {
-        // Si l'utilisateur est connecté, afficher ou masquer le formulaire
+      } else {        
         this.showForm = !this.showForm;
       }
     },
-    async createHero() {
-      // Vérifier que tous les champs obligatoires sont remplis
-      if (!this.newHero.Name || !this.newHero.Sex || !this.newHero.OriginPlanet || !this.newHero.Description || this.newHero.Description.length < 20) {
+    async createHero() {      
+      if (!this.newHero.Name || !this.newHero.Sex || !this.newHero.OriginPlanet
+       || !this.newHero.Description || this.newHero.Description.length < 20) {
         alert("Veuillez remplir tous les champs obligatoires.");
         return;
-      }
-
-      // Nettoyage des champs facultatifs pour éviter l'envoi de valeurs vides
+      }      
       const heroData = { ...this.newHero };
       if (!heroData.Powers) heroData.Powers = null;
       if (!heroData.Town) heroData.Town = null;
@@ -132,21 +122,13 @@ export default {
       if (!heroData.Team) heroData.Team = null;
       if (!heroData.Vehicule) heroData.Vehicule = null;
       heroData.UserId = localStorage.getItem("UserId");
-
-      console.log("Données envoyées au serveur:", heroData); // Afficher les données envoyées
-
-      try {
-        // Envoi des données au backend
+      console.log("Données envoyées au serveur:", heroData); 
+      try {  
         const response = await axios.post('http://localhost/api/heroes/create', heroData, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
-
         console.log("Héros créé :", response.data);
-
-        // Ajouter le héros à la liste des héros dans l'interface
         this.heroes.push(response.data);
-
-        // Réinitialiser le formulaire
         this.newHero = {
           Name: "",
           Sex: "Inconnu",
@@ -158,16 +140,12 @@ export default {
           Team: "",
           Vehicule: "",
         };
-
-        // Fermer le formulaire
         this.showForm = false;
         this.$router.push("/home");
       } catch (error) {
         console.error("Erreur lors de la création du héros :", error);
       }
     },
-
-    // Fonction pour rediriger vers la page de connexion
     goToLoginPage() {
       this.$router.push('/');
     }

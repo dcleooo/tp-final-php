@@ -25,7 +25,8 @@ class Hero extends Model
     }
     protected $table = "heroes";
 
-    protected $fillable = ["HeroId",'Name', 'Sex', 'OriginPlanet', 'Description', 'Powers', 'Town', 'Gadgets', 'Team', 'Vehicule',"UserId"];
+    protected $fillable = ["HeroId",'Name', 'Sex', 'OriginPlanet',
+    'Description', 'Powers', 'Town', 'Gadgets', 'Team', 'Vehicule',"UserId"];
 
     protected $appends = ["UserName"];
 

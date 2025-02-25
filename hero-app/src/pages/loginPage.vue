@@ -2,7 +2,6 @@
   <div v-if="ConnectionFormVisible">
     <h2>Connexion</h2>
     
-    <!-- Formulaire de connexion -->
     <form @submit.prevent="login">
       <div>
         <label>Email :</label>
@@ -14,13 +13,8 @@
       </div>
       <button type="submit">Se connecter</button>
     </form>
-    
     <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
     </div>
-    <!-- Lien vers l'inscription -->
-    <p>Pas encore inscrit ? <a @click="toggleForm" v-if="ConnectionFormVisible">Cliquez ici pour vous inscrire</a><a @click="toggleForm" v-if="isSignUpFormVisible">Cliquez ici pour vous connecter</a></p>
-
-    <!-- Formulaire d'inscription (affiché quand toggleForm est true) -->
     <div v-if="isSignUpFormVisible">
       <h2>Inscription</h2>
       <form @submit.prevent="register">
@@ -44,6 +38,9 @@
       </form>
       <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
     </div>
+    <p>Pas encore inscrit ? <a @click="toggleForm" v-if="ConnectionFormVisible">Cliquez ici pour vous inscrire</a><a @click="toggleForm" v-if="isSignUpFormVisible">Cliquez ici pour vous connecter</a></p>
+
+    
 </template>
 <style>
   @import '@/assets/login.css';
@@ -55,13 +52,11 @@ export default {
   name: "LoginPage",
   data() {
     return {
-      // Données pour la connexion
       email: "",
       password: "",
       errorMessage: "",
       ConnectionFormVisible: true,
       
-      // Données pour l'inscription
       emailSignUp: "",
       passwordSignUp: "",
       isSignUpFormVisible: false,
@@ -83,10 +78,8 @@ export default {
 
         console.log("Connexion réussie :", response.data);
 
-        // Stocker le token dans le localStorage
         localStorage.setItem('UserId', response.data.UserId);
 
-        // Rediriger vers la page d'accueil après connexion
         this.$router.push('/home');
       } catch (error) {
         console.error("Erreur de connexion :", error);
@@ -95,7 +88,6 @@ export default {
     },
     
     toggleForm() {
-      // Basculer l'affichage du formulaire d'inscription
       this.isSignUpFormVisible = !this.isSignUpFormVisible;
       this.ConnectionFormVisible = !this.ConnectionFormVisible;
     },
@@ -114,7 +106,6 @@ export default {
 
         console.log("Inscription réussie :", response.data);
         localStorage.setItem('UserId', response.data.UserId);
-        // Rediriger vers la page de connexion après inscription
         this.$router.push('/home');
       } catch (error) {
         console.error("Erreur d'inscription :", error);

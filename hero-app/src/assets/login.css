@@ -1,4 +1,4 @@
-/* Applique box-sizing à tous les éléments */
+
 *,
 *::before,
 *::after {
@@ -6,7 +6,7 @@
 }
 
 
-/* Styles généraux */
+
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #4facfe, #00f2fe);
@@ -17,12 +17,12 @@ body {
     margin: 0;
 }
 
-/* Conteneur principal */
+
 div {
     text-align: center;
 }
 
-/* Formulaire */
+
 form {
     background: white;
     padding: 20px;
@@ -32,8 +32,8 @@ form {
     margin: 20px auto;
 }
 
-/* Champs de saisie */
-/* Champs de saisie */
+
+
 input {
     width: 100%;
     padding: 10px;
@@ -41,11 +41,11 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-    box-sizing: border-box;  /* Important : inclure le padding et la bordure dans la largeur totale */
+    box-sizing: border-box;  
 }
 
 
-/* Labels */
+
 label {
     font-weight: bold;
     display: block;
@@ -53,7 +53,7 @@ label {
     text-align: left;
 }
 
-/* Bouton de soumission */
+
 button {
     width: 100%;
     padding: 10px;
@@ -71,7 +71,7 @@ button:hover {
     background: #00c6ff;
 }
 
-/* Message d'erreur */
+
 p[style*="color: red"] {
     background: #ffebee;
     color: #d32f2f;
@@ -79,7 +79,7 @@ p[style*="color: red"] {
     border-radius: 5px;
 }
 
-/* Liens */
+
 p a {
     color: white;
     cursor: pointer;

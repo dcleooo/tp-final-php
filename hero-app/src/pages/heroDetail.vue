@@ -1,6 +1,5 @@
 <template>
   <div class="hero-page">
-    <!-- Navigation -->
     <router-link :to="'/home'" class="back-link">Page d'accueil</router-link>
     
     <div v-if="isModifiable" class="action-links">
@@ -8,7 +7,6 @@
       <a @click="deleteHero">Supprimer le héros</a>
     </div>
 
-    <!-- Détails du héros -->
     <div v-if="!updateHero" class="hero-detail">
       <h2>{{ hero.Name }}</h2>
       <h4>Sexe : {{ hero.Sex }}</h4>
@@ -37,11 +35,10 @@
       </div>
     </div>
 
-    <!-- Formulaire de mise à jour du héros -->
+    
     <div v-if="updateHero" class="update-form">
       <form @submit.prevent="updateHeroData">
         <div v-for="(value, key) in updatedHero" :key="key" class="form-group">
-          <!-- Exclusion des champs à ne pas afficher -->
           <template v-if="!['HeroId', 'UserId', 'created_at', 'updated_at', 'UserName'].includes(key)">
             <label>{{ capitalize(key) }} :</label>
             <input v-if="key !== 'Description'" type="text" v-model="updatedHero[key]" />
@@ -90,8 +87,8 @@ export default {
         await axios.put('http://localhost/api/heroes/update', cleanedData, {
           headers: { 'Content-Type': 'application/json' },
         });
-        this.getHeroData(); // Recharge les données actualisées du héros
-        this.togglePage(); // Cache le formulaire après la mise à jour
+        this.getHeroData(); 
+        this.togglePage(); 
       } catch (error) {
         console.error('Erreur lors de la mise à jour du héros:', error);
       }
@@ -110,7 +107,6 @@ export default {
       }
     },
     cleanData(hero) {
-      // Supprime les champs vides ou inutiles
       for (let key in hero) {
         if (!hero[key] || hero[key] === 'Aucune info') {
           hero[key] = null;
@@ -119,7 +115,6 @@ export default {
       return hero;
     },
     completeData(hero) {
-      // Remplace les valeurs nulles par "Aucune info"
       for (let key in hero) {
         if (hero[key] === null) {
           hero[key] = 'Aucune info';
@@ -134,98 +129,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.hero-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.back-link {
-  font-size: 1.2em;
-  color: #007bff;
-  margin-bottom: 20px;
-}
-
-.action-links {
-  margin-top: 20px;
-}
-
-.action-links a {
-  color: #007bff;
-  margin-right: 20px;
-  cursor: pointer;
-}
-
-.hero-detail {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
-
-.hero-detail h2,
-.hero-detail h4 {
-  color: #333;
-}
-
-.hero-detail .section {
-  margin-top: 15px;
-}
-
-section ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-section ul li {
-  margin-left: 20px;
-}
-
-.update-form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-height: 80vh; /* Limite la hauteur pour permettre le défilement */
-  overflow-y: auto; /* Permet le défilement vertical */
-  margin-top: 20px;
-}
-
-.update-form .form-group {
-  margin-bottom: 15px;
-}
-
-.update-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.update-form input,
-.update-form textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.update-form button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.1em;
-}
-
-.update-form button:hover {
-  background-color: #0056b3;
-}
+<style>
+@import "@/assets/details.css";
 </style>

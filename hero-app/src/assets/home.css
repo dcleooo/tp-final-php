@@ -1,4 +1,4 @@
-/* Global styles */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -7,7 +7,7 @@ body {
     padding: 0;
 }
 
-/* Button styles */
+
 button {
     padding: 10px 20px;
     background-color: #28a745;
@@ -26,10 +26,10 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Form Styles */
+
 form {
-    max-height: 70vh; /* Limiter la hauteur du formulaire à 70% de la hauteur de la fenêtre */
-    overflow-y: auto; /* Permettre le défilement si le contenu dépasse la hauteur */
+    max-height: 70vh; 
+    overflow-y: auto; 
     padding: 20px;
     border-radius: 8px;
     background-color: #f8f9fa;
@@ -69,7 +69,7 @@ textarea {
     resize: vertical;
 }
 
-/* Liste des héros */
+
 ul {
     list-style-type: none;
     padding-left: 0;
@@ -95,29 +95,29 @@ li a:hover {
     text-decoration: underline;
 }
 
-/* Positionnement du bouton de connexion */
+
 .login-btn {
-    position: fixed; /* Le bouton reste fixe même lors du défilement */
-    top: 20px;  /* Ajuste la distance du haut de la page */
-    right: 20px; /* Place le bouton en haut à droite */
+    position: fixed; 
+    top: 20px;  
+    right: 20px; 
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 6px 15px; /* Taille réduite du bouton */
+    padding: 6px 15px; 
     font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none; /* Enlève le soulignement si c'est un lien */
-    z-index: 100; /* Garantit que le bouton reste au-dessus des autres éléments */
-    width: auto; /* Ne prend pas toute la largeur */
-    display: inline-block; /* Assure que le bouton a la bonne taille */
+    text-decoration: none; 
+    z-index: 100; 
+    width: auto; 
+    display: inline-block; 
 }
 
 .login-btn:hover {
     background-color: #0056b3;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     form {
         width: 90%;

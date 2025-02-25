@@ -1,4 +1,4 @@
-/* Global styles */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -22,7 +22,7 @@ body {
     text-decoration: underline;
   }
   
-  /* Style général pour la fiche technique du héros */
+  
   .hero-detail {
     background-color: #fff;
     padding: 20px;
@@ -56,7 +56,7 @@ body {
   }
   
   .hero-detail li {
-    margin-left: 20px;
+    margin-left: auto;
   }
   
   .hero-detail div {
@@ -69,6 +69,7 @@ body {
   .hero-detail div p,
   .hero-detail div li {
     margin-bottom: 5px;
+    ;
   }
   
   .hero-detail .section-title {
@@ -85,7 +86,7 @@ body {
     color: #666;
   }
   
-  /* Style des liens d'action */
+  
   .hero-detail .action-links {
     grid-column: span 2;
     display: flex;
@@ -125,7 +126,7 @@ body {
     cursor: not-allowed;
   }
   
-  /* Formulaire de modification */
+  
   .hero-detail form {
     grid-column: span 2;
     background-color: #fff;
@@ -176,7 +177,7 @@ body {
     background-color: #0056b3;
   }
   
-  /* Responsive Design */
+  
   @media (max-width: 768px) {
     .hero-detail {
       width: 95%;
